@@ -38,7 +38,7 @@ plt.rcParams.update(params)
 
 
 
-def Plot(listOfTraces, title='', xlabel='', ylabel='', xlog=False, ylog=False, xlim=None, ylim=None, gridlines=True, legend=("best", []), fc='#e5e5e5', fs=(10, 7), dpi=160):
+def Plot(listOfTraces, title='', xlabel='', ylabel='', xlog=False, ylog=False, xlim=None, ylim=None, gridlines=True, legend=("best", []), fc='white', fs=(10, 7), dpi=160, show=True):
   if (isinstance(listOfTraces, Trace) or isinstance(listOfTraces, Fit) or isinstance(listOfTraces, Line)):
     listOfTraces = [listOfTraces]
   elif (isinstance(listOfTraces, Wave)):
@@ -144,9 +144,11 @@ def Plot(listOfTraces, title='', xlabel='', ylabel='', xlog=False, ylog=False, x
         for l in thelegend.get_lines():
           l.set_linewidth(1.5)  # the legend line width
   
-  # plt.ion()
+ #  plt.ion()
   plt.tight_layout()
-  plt.show()  
-  plt.close()
-  return 1
-
+  if show:
+    plt.show()  
+    plt.close()
+    return
+  else:
+    return plt
