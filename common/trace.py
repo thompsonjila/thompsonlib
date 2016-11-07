@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from common.colors import randomColor, namedColor
-from common.wave import Wave
-from common.fit import Fit
+from thompsonlib.common.colors import randomColor, namedColor
+from thompsonlib.common.wave import Wave
+from thompsonlib.common.fit import Fit
 from copy import copy
 
 # A Trace() is a set of an xwave and a ywave which form (x, y) scatter points

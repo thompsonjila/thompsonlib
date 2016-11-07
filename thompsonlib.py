@@ -5,14 +5,14 @@ Created on Wed Sep 14 14:50:32 2016
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
-from common.fitfunc import FitFunc
-from common.fitfunc import *
-from common.wave import Wave
-from common.trace import Trace
-from common.line import Line
-from common.fit import Fit
-from common.dataset import *
-from common.colors import randomColor
+#from common.fitfunc import FitFunc
+from thompsonlib.common.fitfunc import *
+from thompsonlib.common.wave import Wave
+from thompsonlib.common.trace import Trace
+from thompsonlib.common.line import Line
+from thompsonlib.common.fit import Fit
+from thompsonlib.common.dataset import *
+from thompsonlib.common.colors import randomColor
 
 
 

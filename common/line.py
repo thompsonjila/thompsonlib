@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from common.colors import namedColor
+from thompsonlib.common.colors import namedColor
 
 # A Line() is an object for plotting defined by a position 'p', a linestyle, and whether it is vertical or not.
 class Line:

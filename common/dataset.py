@@ -4,7 +4,7 @@ import numpy as np
 import os.path
 
 import warnings
-warnings.simplefilter('error')
+# warnings.simplefilter('error')
 
 
 
