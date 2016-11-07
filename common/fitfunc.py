@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
-from common.colors import randomColor
+from thompsonlib.common.colors import randomColor
 
 ''' Fit function library '''
 

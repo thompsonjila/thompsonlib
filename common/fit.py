@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from common.colors import randomColor, namedColor
-from common.wave import Wave
+from thompsonlib.common.colors import randomColor, namedColor
+from thompsonlib.common.wave import Wave
 #from common.fitfunc import fitFunc
 from scipy.optimize import curve_fit
 
