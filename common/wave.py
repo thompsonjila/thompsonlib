@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import matplotlib.pyplot as plt
 import numpy as np
 import numbers
+from thompsonlib.common.colors import randomColor
 
 
 
@@ -88,8 +90,26 @@ class Wave:
     return Wave(newpts, name=self.name, errbars=newerrbars)
      
   # intentionally do not pollute this with extra options
-  def plot(self):
-    
+  # potentially add in errorbars.
+  def plot(self, ls='none', ms='o'):
+    plt.close()
+    fig = plt.figure(facecolor="#e5e5e5", figsize=(5, 3), dpi=80)
+    ax1 = fig.add_subplot(111)
+    ax1.set_axisbelow(True)    
+    plt.rc('font', **{'family':'serif'})
+    params = {'backend': 'pdf', 'axes.labelsize': 14, 'font.size': 12, 'text.usetex': False}
+    plt.rcParams.update(params)   
+    ax1.plot(self.getScalingWave(), self.pts,
+             linestyle=ls,
+             marker=ms, 
+             color=randomColor(),
+             markeredgewidth=True,
+             alpha=0.8)         
+    ax1.set_title(self.name, y=1.03)
+    ax1.grid(b=True, which='major', color='#cccccc', linestyle='-')
+    ax1.grid(b=True, which='minor', color='#e5e5e5', linestyle='--')
+    plt.tight_layout()
+    plt.show()
     return None
      
      
