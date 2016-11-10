@@ -1,4 +1,4 @@
-import common.thompsonlib as TL
+from thompsonlib import thompsonlib as TL
 import random as random
 
 
@@ -16,7 +16,8 @@ TL.Plot(xpts1, xlabel='x-axis scaling test: $x_0 = 100, \\Delta x = 100$', ylabe
 
 
 print("\n\n\n\n\n")
-print("Plot two waves (a Trace)")
+print("Plot two waves (Traces)")
+print("Trace 4 has been sorted by x-values.")
 xpts1 = TL.Wave([.12, .25, .43, .30, .24, .03, .54, .42, .19, .01], name='X Wave 1')
 ypts1 = TL.Wave([.48, .28, .19, .73, .79, .28, .40, .14, .42, .25], name='Y Wave 1')
 ypts2 = ypts1 + 1.0
@@ -54,12 +55,11 @@ TL.Plot(residuals5, title="Residuals of Lor Fit")
 
   # weighted fits, etc
   # TODO confidence bands, residuals, etc. 
-  # TODO sort trace based on x points  
 
 
 
 print("\n\n\n\n\n")
 print("Color-wave test")
-pts6 = TL.Wave([0, 1, 2, 6, 4, 3, 7, 5, 12, 2, 3, 5], name='MyWave', clist=[0, 0, 1, 1, .6, 1, 0, 0, 0, 1, .6, 1])
+pts6 = TL.Wave([0, 1, 2, 6, 4, 3, 7, 5, 12, 2, 3, 5], name='MyWave', clist=[0, .2, .1, .3, .2, .6, .8, .9, 1, 1.2, 1.3, 1.1])
 trace6 = TL.Trace(pts6, cmapstr='plasma')
 TL.Plot(trace6, title="Color wave test")
