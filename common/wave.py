@@ -87,7 +87,10 @@ class Wave:
     newerrbars = removeByIndex(self.errbars, badindices)
     return Wave(newpts, name=self.name, errbars=newerrbars)
      
-     
+  # intentionally do not pollute this with extra options
+  def plot(self):
+    
+    return None
      
      
      

@@ -60,7 +60,7 @@ class FitFunc:
 
     plt.tight_layout()
     plt.show()
-    return self.args[1:] + "\n" + "Help string for " + self.name + ":\n\t" + self.helpStr
+    return str(self.args[1:]) + "\n" + "Help string for " + self.name + ":\n\t" + self.helpStr
   
     
 FitLine = FitFunc("Linear", ["x", "m", "b"], "", "mx + b")
@@ -83,7 +83,7 @@ def fit_exp(x, A, tau, x0, y0):
   return A * np.exp(-(x-x0)/tau) + y0
 FitExp.f = fit_exp
     
-FitDblExp = FitFunc("Double Exp.", ["x", "A1", "tau1", "A2", "tau2", "x0", "y0"], "", "A_1 \\exp(-\\frac{x-x_0}{\\tau_1}) + A_2 \\exp(-\\frac{x-x_0}{\\tau_2}) + y_0")
+FitDblExp = FitFunc("Double Exp.", ["x", "A1", "tau1", "A2", "tau2", "x0", "y0"], "", "A_1 \\exp(\\frac{x_0-x}{\\tau_1}) + A_2 \\exp(\\frac{x_0-x}{\\tau_2}) + y_0")
 def fit_dblexp(x, A1, tau1, A2, tau2, x0, y0):
   return A1 * np.exp(-(x-x0)/tau1) + A2 * np.exp(-(x-x0)/tau2) + y0
 FitDblExp.f = fit_dblexp
@@ -134,16 +134,12 @@ class AllFits:
     self.Fits.append(FitPow)    
     self.Fits.append(FitLogNormal)
 
-  def help(self):
+  def __repr__(self):
     plt.close()
     fig, axarr = plt.subplots(int((1 + len(self.Fits))/2), 2, sharex='all', facecolor='#e5e5e5', figsize=(11, 18), dpi=80)
       
-    plt.rc('font', **{'family':'sans-serif'}) # could change the way eg texttt is rendered
-    params = {'backend': 'pdf',
-          'axes.labelsize': 14,
-          'font.size': 14,
-          'text.usetex': False,
-          }
+    plt.rc('font', **{'family':'sans-serif'})
+    params = {'backend': 'pdf', 'axes.labelsize': 14, 'font.size': 14, 'text.usetex': False}
     plt.rcParams.update(params)   
     ii = 0
     jj = 0
@@ -158,14 +154,14 @@ class AllFits:
       elif len(fit.args) == 4:
         ys = fit.f(xs, 1, 3, 3)
       elif len(fit.args) == 5:
-        ys = fit.f(xs, 1, 3, 2, 4)
+        ys = fit.f(xs, 1, 3, 2.5, 4)
       elif len(fit.args) == 6:
         ys = fit.f(xs, 1, 4, 3, 3, 5)
       elif len(fit.args) == 7:
         ys = fit.f(xs, 1, 4, 3, 3, 2, 2)
 
       axarr[ii, jj].plot(xs, ys, color=randomColor(), linestyle='-')
-      axarr[ii, jj].set_title(fit.name + ": $" + str(fit.latexFormula) + "$")
+      axarr[ii, jj].set_title(fit.name + ": $" + str(fit.latexFormula) + "$", y=1.08)
       axarr[ii, jj].xaxis.set_major_formatter(plt.NullFormatter())
       axarr[ii, jj].yaxis.set_major_formatter(plt.NullFormatter())
       axarr[ii, jj].grid(b=True, which='major', color='#cccccc', linestyle='-')
@@ -186,7 +182,6 @@ class AllFits:
     
     plt.tight_layout()
     plt.show()
-    return 1
-
+    return "Printed all fit information in AllFits. If your fit is missing, add it to the AllFits.Fits[] list in fitfunc.py!"
 
 AllFits = AllFits()  
