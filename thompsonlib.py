@@ -16,8 +16,6 @@ from thompsonlib.common.colors import randomColor
 
 
 
-
-
 ''' Plotting library '''
               
 plt.rc('font', **{'family':'serif'}) # could change the way eg texttt is rendered

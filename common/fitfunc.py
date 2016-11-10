@@ -17,7 +17,51 @@ class FitFunc:
   def help(self):
     print(self.name + " " + str(self.args) + " : " + self.helpStr + "\r\n\t" + self.latexFormula)
     
+  def __repr__(self):
     
+    plt.close()
+    fig = plt.figure(facecolor="#e5e5e5", figsize=(5, 3), dpi=80)
+    ax1 = fig.add_subplot(111)
+    ax1.set_axisbelow(True)    
+    plt.rc('font', **{'family':'sans-serif'}) # could change the way eg texttt is rendered
+    params = {'backend': 'pdf',
+          'axes.labelsize': 14,
+          'font.size': 14,
+          'text.usetex': False,
+          }
+    plt.rcParams.update(params)   
+    xs = np.linspace(-10, 10, 250)
+    if len(self.args) == 1:
+      ys = self.f(xs)
+    elif len(self.args) == 2:
+      ys = self.f(xs, 1)
+    elif len(self.args) == 3:
+      ys = self.f(xs, 1, 4)
+    elif len(self.args) == 4:
+      ys = self.f(xs, 1, 3, 3)
+    elif len(self.args) == 5:
+      ys = self.f(xs, 1, 3, 2, 4)
+    elif len(self.args) == 6:
+      ys = self.f(xs, 1, 4, 3, 3, 5)
+    elif len(self.args) == 7:
+      ys = self.f(xs, 1, 4, 3, 3, 2, 2)
+    ax1.plot(xs, ys, color=randomColor(), linestyle='-')
+    ax1.set_title(self.name + ": $" + str(self.latexFormula) + "$", y=1.08)
+    ax1.xaxis.set_major_formatter(plt.NullFormatter())
+    ax1.yaxis.set_major_formatter(plt.NullFormatter())
+    ax1.grid(b=True, which='major', color='#cccccc', linestyle='-')
+    ax1.grid(b=True, which='minor', color='#e5e5e5', linestyle='--')
+    [minrng, maxrng] = ax1.get_ylim()
+    totalrng = (maxrng-minrng)
+    midptrng = (maxrng+minrng)/2      
+    minrng = midptrng - .55*totalrng
+    maxrng = midptrng + .55*totalrng
+    ax1.set_ylim([minrng, maxrng])
+
+    plt.tight_layout()
+    plt.show()
+    return self.args[1:] + "\n" + "Help string for " + self.name + ":\n\t" + self.helpStr
+  
     
 FitLine = FitFunc("Linear", ["x", "m", "b"], "", "mx + b")
 def fit_linear(x, m, b):
@@ -141,8 +185,7 @@ class AllFits:
         axarr[ii, jj].yaxis.set_major_formatter(plt.NullFormatter())
     
     plt.tight_layout()
-    plt.show()  
-    plt.close()
+    plt.show()
     return 1
 
 
