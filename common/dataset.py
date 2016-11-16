@@ -57,7 +57,7 @@ def importTimeTrace(filename, name='', skip_header=3, skip_footer=3, usecols=[],
 
 ''' Strontium-side importing wrappers '''
 # Sr style AI point importing
-def importAIPoints(filename, name='', headers=False, skip_header=0, skip_footer=0, unpack=True, max_rows=0):
+def importAIPoints(filename, name='', headers=None, skip_header=0, skip_footer=0, unpack=True, max_rows=0):
   numberOfAIs = 8  
   if not headers:
     colnums = [0]
@@ -69,9 +69,9 @@ def importAIPoints(filename, name='', headers=False, skip_header=0, skip_footer=
   
 ''' General importing wrappers '''
 # import regular comma separated file
-def importCSV(filename, name='', headers=False, skip_header=0, skip_footer=0, usecols=[], unpack=True, max_rows=0):
+def importCSV(filename, name='', headers=None, skip_header=0, skip_footer=0, usecols=[], unpack=True, max_rows=0):
   return Dataset(filename, name, delimiter=',', headers=headers, skip_header=skip_header, skip_footer=skip_footer, usecols=usecols, unpack=unpack, max_rows=max_rows)
 
 # import regular comma separated file
-def importTSV(filename, name='', headers=False, skip_header=0, skip_footer=0, usecols=[], unpack=True, max_rows=0):
+def importTSV(filename, name='', headers=None, skip_header=0, skip_footer=0, usecols=[], unpack=True, max_rows=0):
   return Dataset(filename, name, delimiter='\t', headers=headers, skip_header=skip_header, skip_footer=skip_footer, usecols=usecols, unpack=unpack, max_rows=max_rows)
