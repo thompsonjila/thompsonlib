@@ -74,6 +74,7 @@ def Plot(listOfTraces, title='', xlabel='', ylabel='', xlog=False, ylog=False, x
       if (trace.type is 'line'): # lines MUST be plotted with 'plot'
         ax1.plot(trace.xwave.pts, trace.ywave.pts,
                  ls=trace.linestyle,
+                 lw=2,
                  color=trace.color,
                  label=trace.name)
       else: # markers or markers with connecting line
@@ -90,6 +91,7 @@ def Plot(listOfTraces, title='', xlabel='', ylabel='', xlog=False, ylog=False, x
         else:
           ax1.plot(trace.xwave.pts, trace.ywave.pts,
                    ls=trace.linestyle,
+                   lw=2,
                    marker=trace.marker, 
                    markersize=trace.markersize,
                    markeredgewidth=trace.stroke,
