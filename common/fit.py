@@ -10,8 +10,8 @@ from scipy.optimize import curve_fit
 
 class Fit:
   def __init__(self, xs, ys, fitFunc, p_guess, name='', pruneX=False, pruneY=False, usexerr=True, useyerr=True, ls='-', color=randomColor(), verbose=True):
-    if len(xs) is not len(ys):
-      print ("Length of X and Y waves did not match during Fit")      
+    if (len(xs) != len(ys)):
+      print ("Length of X and Y waves (%d and %d) did not match during Fit" % (len(xs), len(ys)))      
       return -1
     self.fitFunc = fitFunc
     if (isinstance(xs, Wave)):

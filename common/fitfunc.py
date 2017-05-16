@@ -72,12 +72,13 @@ FitGauss = FitFunc("Gaussian", ["x", "A", "x0", "w", "y0"], "", "A \\exp(-\\frac
 def fit_gauss(x, A, x0, w, y0):
   return A * np.exp(-2*((x-x0)/w)**2) + y0
 FitGauss.f = fit_gauss
+FitGauss.helpStr = "Yes, this will give you w=1/e^2 waist-radius. FWHM = 1.1774w"
 
 FitLor = FitFunc("Lorentzian", ["x", "A", "Gamma", "x0", "y0"], "", "\\frac{A}{\\pi} \\frac{\\Gamma / 2}{(x-x_0)^2 + (\\Gamma/2)^2} + y_0")
 def fit_lor(x, A, Gamma, x0, y0):
   return (A/(2*np.pi)) * Gamma / ((x - x0)**2 + (Gamma/2)**2) + y0
 FitLor.f = fit_lor
-    
+
 FitExp = FitFunc("Exponential", ["x", "A", "tau", "x0", "y0"], "", "A \\exp(-\\frac{x-x_0}{\\tau}) + y_0")
 def fit_exp(x, A, tau, x0, y0):
   return A * np.exp(-(x-x0)/tau) + y0
