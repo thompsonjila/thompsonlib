@@ -49,6 +49,8 @@ def Plot(listOfTraces, title='', xlabel='', ylabel='', xlog=False, ylog=False, x
 
   ax1 = fig.add_subplot(111)
   ax1.set_axisbelow(True)
+  ax1.tick_params(axis='both', which='major', labelsize=10)
+  ax1.tick_params(axis='both', which='minor', labelsize=8)
 
   # log plots  
   if (xlog):
@@ -71,7 +73,7 @@ def Plot(listOfTraces, title='', xlabel='', ylabel='', xlog=False, ylog=False, x
     if type(trace) is Fit:
       ax1.plot(trace.fitxvals, trace.fitFunc.f(trace.fitxvals, *(trace.popt)), linestyle=trace.linestyle, color=trace.color, label=trace.name)
     elif type(trace) is Trace:
-      if (trace.type is 'line'): # lines MUST be plotted with 'plot'
+      if (trace.type == 'line'): # lines MUST be plotted with 'plot'
         ax1.plot(trace.xwave.pts, trace.ywave.pts,
                  ls=trace.linestyle,
                  lw=2,
