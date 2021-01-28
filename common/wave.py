@@ -13,7 +13,8 @@ def removeByIndex(pts, listOfIndices):
 class Wave:
   def __init__(self, pts, errbars=[], name='', x0=0, deltax=1, clist=[]):
     if isinstance(pts, Wave):
-      return pts
+      print("You're trying to make a Wave out of a Wave")
+      return None
     self.pts = np.array(pts)
     self.name = name
     if (len(errbars) == len(pts)) or (len(errbars) == 0):
@@ -159,7 +160,7 @@ class Wave:
         
   def __pow__(self, a):
     if isinstance(a, numbers.Number):
-      return Wave(np.pow(self.pts, a), errbars=[], name=self.name, x0=self.x0, deltax=self.deltax)
+      return Wave(np.power(self.pts, a), errbars=[], name=self.name, x0=self.x0, deltax=self.deltax)
     elif isinstance(a, Wave):
       print("Pow() is not implemented for Waves")
     return Wave([])

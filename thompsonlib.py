@@ -47,10 +47,10 @@ def Plot(listOfTraces, title='', xlabel='', ylabel='', xlog=False, ylog=False, x
     plt.grid(b=True, which='major', color='#cccccc', linestyle='-')
     plt.grid(b=True, which='minor', color='#e5e5e5', linestyle='--')
 
-  ax1 = fig.add_subplot(111)
+  ax1 = fig.add_subplot(1, 1, 1)
   ax1.set_axisbelow(True)
-  ax1.tick_params(axis='both', which='major', labelsize=10)
-  ax1.tick_params(axis='both', which='minor', labelsize=8)
+  # ax1.tick_params(axis='both', which='major', labelsize=10)
+  # ax1.tick_params(axis='both', which='minor', labelsize=8)
 
   # log plots  
   if (xlog):
@@ -153,4 +153,4 @@ def Plot(listOfTraces, title='', xlabel='', ylabel='', xlog=False, ylog=False, x
     plt.close()
     return
   else:
-    return plt
+    return plt, ax1
